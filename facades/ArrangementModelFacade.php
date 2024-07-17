@@ -122,7 +122,6 @@ class ArrangementModelFacade
                 'cost' => $objectExt->object->cost,
                 'rotate' => $objectExt->positionType == TerritoryConcept::HORIZONTAL_POSITION ? TerritoryConcept::HORIZONTAL_POSITION : 90,
                 'link' => $objectExt->object->model_path,
-                'type' => $objectExt->object->object_type_id,
                 'dotCenter' => [
                     'x' => LocalCoordinatesManager::calculateLocalCoordinates($territory, $objectExt)['x'],
                     'y' => LocalCoordinatesManager::calculateLocalCoordinates($territory, $objectExt)['y'],

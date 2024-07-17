@@ -34,7 +34,14 @@ class QuestionDecisionForm extends Model
         $facade->correctArrangement(random_int(2, 3));
         $this->territoires[] = $facade->model;
 
-        $facade->generateTerritoryArrangement(TerritoryConcept::TYPE_SELF_VOTES, $territoryId, TerritoryFacade::OPTIONS_DEFAULT, null, ['votes' => $votes]);
+        $incrementedArray = array();
+
+        foreach ($votes as $key => $value) {
+            $newKey = $key + 1;
+            $incrementedArray[$newKey] = $value;
+        }
+
+        $facade->generateTerritoryArrangement(TerritoryConcept::TYPE_SELF_VOTES, $territoryId, TerritoryFacade::OPTIONS_DEFAULT, null, ['votes' => $incrementedArray]);
         $facade->correctArrangement(random_int(2, 3));
         $this->territoires[] = $facade->model;
     }

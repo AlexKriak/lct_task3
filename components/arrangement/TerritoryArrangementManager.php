@@ -287,7 +287,8 @@ class TerritoryArrangementManager
             $objects = ObjectWork::find()
                 ->select(['*', 'unit_cost' => new Expression('`cost` / (`length` * `width`)')])
                 ->where(['object_type_id' => $key])
-                ->andWhere(['NOT IN', 'id', $addGenType !== TerritoryFacade::OPTIONS_BUDGET_ECONOMY ? array_keys($this->territory->state->objectIds) : []]);
+                ->andWhere(['NOT IN', 'id', $addGenType !== TerritoryFacade::OPTIONS_BUDGET_ECONOMY ? array_keys($this->territory->state->objectIds) : []])
+                ->orderBy(new Expression('RAND()'));
 
             if ($addGenType == TerritoryFacade::OPTIONS_SIMILAR) {
                 $objects = $objects->andWhere(['NOT IN', 'id', array_keys($cleanStopList)]);

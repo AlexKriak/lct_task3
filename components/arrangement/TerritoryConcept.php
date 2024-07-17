@@ -159,7 +159,7 @@ class TerritoryConcept
         $counter = 0;
         for ($i = 0; $i < count($this->matrix); $i++) {
             for ($j = 0; $j < count($this->matrix[$i]); $j++) {
-                if ($this->matrix[$i][$j] == 0) {
+                if (isset($this->matrix[$i][$j]) && $this->matrix[$i][$j] == 0) {
                     $counter++;
                 }
             }
@@ -170,6 +170,11 @@ class TerritoryConcept
 
     public function calculateCurrentFullness()
     {
-        return ((count($this->matrix) * count($this->matrix[0])) - $this->calculateEmptyCells()) / (count($this->matrix) * count($this->matrix[0]));
+        if (count($this->matrix) > 0 && count($this->matrix[0]) > 0) {
+            return ((count($this->matrix) * count($this->matrix[0])) - $this->calculateEmptyCells()) / (count($this->matrix) * count($this->matrix[0]));
+        }
+        else {
+            return 0;
+        }
     }
 }
